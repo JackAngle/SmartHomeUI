@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#66e0ff"
+    android:orientation="vertical"
+    tools:context=".SmartHome">
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <ImageButton
+                android:id="@+id/imageButton01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bulblight"
+                android:layout_weight="0.1"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:gravity="start"
+               />
+            <ImageButton
+                android:id="@+id/imageButton02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bulblight"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_weight="0.1"
+                android:gravity="end" />
+        </TableRow>
+        <TableRow>
+            <ImageButton
+                android:id="@+id/imageButton03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/fan"
+                android:layout_weight="0.1"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:gravity="start"/>
+            <ImageButton
+                android:id="@+id/imageButton04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/refresh"
+                android:layout_weight="0.1"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:gravity="end"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_dark"
+                android:textColor="@android:color/holo_orange_light"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="Click icon to control device"/>
+        </TableRow>
+    </TableLayout>
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/gridView01"
+        android:gravity="center|bottom"
+        android:numColumns="2"
+        android:columnWidth="120dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/weather">
+
+    </GridView>
+
+
+</LinearLayout>
