@@ -102,8 +102,8 @@ public class SmartHome extends AppCompatActivity {
         mImageButton01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageStatus01 = (!imageStatus01);
-                if (imageStatus01) {
+
+                if (!imageStatus01) {
                    // mImageButton01.setImageResource(R.drawable.light_icon);
                     command = FIRST_LIGHT_ON;
                     mHandler.post(mRunnable);
@@ -118,8 +118,8 @@ public class SmartHome extends AppCompatActivity {
         mImageButton02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageStatus02 = (!imageStatus02);
-                if (imageStatus02) {
+
+                if (!imageStatus02) {
                     //mImageButton02.setImageResource(R.drawable.light_icon);
                     command = SECOND_LIGHT_ON;
                     mHandler.post(mRunnable);
@@ -134,21 +134,23 @@ public class SmartHome extends AppCompatActivity {
         mImageButton03.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageStatus03 = imageStatus03 + 1;
+
 
                 //Set fan's imageStatus to 0 if current value is greater than 2
-                if (imageStatus03 > 2){
-                    imageStatus03 = 0;
+
+                int temp = imageStatus03 + 1;
+                if (temp > 2){
+                    temp = 0;
                 }
-                if (imageStatus03 == 0) {
+                if (temp == 0) {
                     //mImageButton03.setImageResource(R.drawable.fan);
                     command = FAN_OFF;
                     mHandler.post(mRunnable);
-                } else if (imageStatus03 == 1){
+                } else if (temp == 1){
                    // mImageButton03.setImageResource(R.drawable.fan02);
                     command = FAN_UP;
                     mHandler.post(mRunnable);
-                } else{
+                } else {
                    // mImageButton03.setImageResource(R.drawable.fan03);
                     command = FAN_UP;
                     mHandler.post(mRunnable);
@@ -225,10 +227,10 @@ public class SmartHome extends AppCompatActivity {
                 sendPOSTRequest(2, 0);
                 break;
             case FAN_UP:
-                /*I realized that imageStatus03 is equals to the value i want to set
-                => I decided to set imageStatus03 as data value for fan-controlling
+                /*I realized that (imageStatus03 + 1) is equals to the value i want to set
+                => I decided to set (imageStatus03 + 1) as data value for fan-controlling
                  */
-                sendPOSTRequest(3, imageStatus03);
+                sendPOSTRequest(3, imageStatus03 + 1);
                 break;
             case FAN_OFF:
                 sendPOSTRequest(3, 0);
@@ -331,6 +333,10 @@ public class SmartHome extends AppCompatActivity {
                 }
                 break;
             case 3:
+                imageStatus03 = imageStatus03 + 1;
+                if (imageStatus03 > 2){
+                    imageStatus03 = 0;
+                }
                 if (imageStatus03 == 0) {
                     mImageButton03.setImageResource(R.drawable.fan);
                 } else if (imageStatus03 == 1){
