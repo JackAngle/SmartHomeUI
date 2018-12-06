@@ -171,6 +171,11 @@ public class SmartHome extends AppCompatActivity {
         updateEnvironmentInfo();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 
     /*Create & return List<DataViewer>*/
     private  List<DataViewer> getListData() {
@@ -237,6 +242,7 @@ public class SmartHome extends AppCompatActivity {
                 break;
             case ENVIRONMENT_INFO_UPDATE:
                 updateEnvironmentInfo();
+                updateDevicesStatus();
                 break;
         }
     }
@@ -290,23 +296,6 @@ public class SmartHome extends AppCompatActivity {
             }
         });
         mRequestQueue.add(luxRequest);
-/*
-        JsonObjectRequest mJsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                System.out.print("Response: " + response.toString());
-                Log.d("Json: ", "Success");
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // TODO: Handle error
-                System.out.print("Error" );
-            }
-        });
-        mRequestQueue.add(mJsonObjectRequest);
-        */
     }
 
     /*
@@ -353,7 +342,7 @@ public class SmartHome extends AppCompatActivity {
             String field = "&field" + (device + 2);
             String url = POST_URL_HEADER + field + "=" + data;
             Log.d("URL", "" + url);
-            StringRequest postRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.d("POSTRequest", "Success");
